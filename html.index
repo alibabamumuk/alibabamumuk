@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Style Chat</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #00FF00;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #chat-container {
+            width: 80%;
+            max-width: 600px;
+            background: #000;
+            padding: 20px;
+            border: 2px solid #00FF00;
+            box-shadow: 0 0 20px #00FF00;
+        }
+        #messages {
+            list-style-type: none;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            border-bottom: 2px solid #00FF00;
+            margin-bottom: 20px;
+        }
+        #messages li {
+            padding: 8px;
+            border-bottom: 1px solid #00FF00;
+        }
+        #chat-form {
+            display: flex;
+        }
+        #chat-form input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #00FF00;
+            background: #000;
+            color: #00FF00;
+            border-radius: 4px 0 0 4px;
+        }
+        #chat-form button {
+            padding: 10px;
+            border: 2px solid #00FF00;
+            background: #00FF00;
+            color: #000;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        #chat-form button:hover {
+            background: #008000;
+        }
+        <!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MümükAİ 1.0</title>
+    <style>
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>MümükAİ 1.0(BETA)</h1>
+</body>
+</html>
+
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <ul id="messages"></ul>
+        <form id="chat-form">
+            <input id="msg" autocomplete="off" placeholder="Type your message here..." /><button>Send</button>
+        </form>
+    </div>
+
+    <script>
+    
+       
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const messages = document.getElementById('messages');
+            const chatForm = document.getElementById('chat-form');
+            const msgInput = document.getElementById('msg');
+
+            const responses = {
+                "naber": "İyiyim, sen nasılsın?",
+                "nasılsın": "İyiyim, teşekkür ederim!",
+                "adın ne": "Ben bir chatbot'um.",
+                "ne yapıyorsun": "Sohbet ediyorum!",
+                "merhaba": "Merhaba! Nasılsın?",
+                "günaydın": "Günaydın! Bugün nasılsın?",
+                "iyi akşamlar": "İyi akşamlar! Neler yapıyorsun?",
+                "iyi geceler": "İyi geceler! Tatlı rüyalar.",
+                "hoşça kal": "Hoşça kal! Kendine iyi bak.",
+                "teşekkür ederim": "Rica ederim!",
+                "nasıl gidiyor": "Her şey yolunda, seninle nasıl?",
+                "ne haber": "Haberler bende, sen nasılsın?",
+                "selam": "Selam! Nasılsın?",
+                "bye": "Güle güle! Görüşmek üzere.",
+                "help": "Sana nasıl yardımcı olabilirim?",
+                "kimsin": "Ben bir chatbot'um. Sen kimsin?",
+                "ne zaman": "Zaman kavramı burada geçerli değil.",
+                "neden": "Çünkü öyle olması gerekiyor.",
+                "nerede": "Buradayım, sen neredesin?",
+                "ne yapalım": "Sen söyle, ne yapalım?",
+                "hangi gün": "Bugün güzel bir gün!",
+                "kaç yaşındasın": "Ben zamansızım, yaşım yok.",
+                "nerelisin": "Ben sanal bir varlığım, herhangi bir yerden değilim.",
+                "hobilerin neler": "Benim hobilerim yok, ama senin hobilerin neler?",
+                "film önerisi": "Inception, Matrix, Interstellar. Senin favorin hangisi?",
+                "müzik önerisi": "Klasik müzik dinlemeyi dene, belki hoşuna gider.",
+                "kitap önerisi": "1984, Cesur Yeni Dünya, Savaş ve Barış. Hangisini okudun?",
+                "favori renk": "Benim favori rengim yeşil, seninki ne?",
+                "yemek önerisi": "Pizza her zaman iyi bir seçimdir!",
+                "gece mi gündüz mü": "Benim için fark etmez, sen hangisini seviyorsun?",
+                "spor yapar mısın": "Hayır, ben spor yapmam. Ama spor yapmak sağlıklıdır.",
+                "teknoloji hakkında ne düşünüyorsun": "Teknoloji harika bir şey, sen ne düşünüyorsun?",
+                "en sevdiğin hayvan": "Benim favorim yok, senin favorin nedir?",
+                "dil öğrenmek istiyorum": "Dil öğrenmek harika bir fikirdir! Hangi dili öğrenmek istiyorsun?",
+                "tatil planların var mı": "Benim tatil planlarım yok, senin var mı?",
+                "en sevdiğin oyun": "Ben oyun oynamam, ama senin favori oyunun nedir?",
+                "hava durumu nasıl": "Ben hava durumunu bilmiyorum, sen kontrol ettin mi?",
+                "favori mevsim": "Benim favori mevsimim yok, senin favorin nedir?",
+                "gece hayatı hakkında ne düşünüyorsun": "Ben gece hayatına katılmam, ama eğlenceli olabilir.",
+                "şehir mi köy mü": "Benim için fark etmez, sen hangisini tercih edersin?",
+                "arkadaşlık hakkında ne düşünüyorsun": "Arkadaşlık önemli bir şeydir, senin iyi arkadaşların var mı?",
+                "ne zaman buluşalım": "Benimle buluşamazsın, ama sohbet edebiliriz!",
+                "hangi müzikleri dinlersin": "Ben müzik dinlemem, ama sen hangi müzikleri seversin?",
+                "nerede yaşıyorsun": "Ben sanal bir varlık olduğum için bir yerde yaşamıyorum.",
+                "en son ne zaman tatile çıktın": "Ben tatile çıkmam, ama sen en son ne zaman tatile çıktın?",
+                "güzel bir gün dilerim": "Teşekkür ederim, sana da güzel bir gün dilerim!",
+                "programlama dilleri hakkında ne düşünüyorsun": "Programlama dilleri harika araçlardır, sen hangi dilleri biliyorsun?",
+                "internet hakkında ne düşünüyorsun": "İnternet bilgiye erişim için harika bir araçtır.",
+                "çalışıyor musun": "Ben çalışmıyorum, ama sen ne iş yapıyorsun?",
+                "okuyor musun": "Ben okumam, ama okumak faydalıdır.",
+                "seni seviyorum": "Teşekkür ederim, ben de seni seviyorum!"
+                
+            };
+
+            chatForm.onsubmit = function(e) {
+                e.preventDefault();
+                const msg = msgInput.value.trim().toLowerCase();
+                if (msg) {
+                    const userItem = document.createElement('li');
+                    userItem.textContent = "You: " + msg;
+                    messages.appendChild(userItem);
+
+                    const botResponse = responses[msg] || "Bu soruya yanıt veremiyorum.";
+                    const botItem = document.createElement('li');
+                    botItem.textContent = "MumukAi: " + botResponse;
+                    messages.appendChild(botItem);
+
+                    msgInput.value = '';
+                    messages.scrollTop = messages.scrollHeight;  // Auto scroll to the bottom
+
+
+
+
+
+                }
+            };
+        });
+    </script>
+</body>
+</html>
