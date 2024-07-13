@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MumıkAi 1.0</title>
+    <title>Hacker Style Chat</title>
     <style>
         body {
             font-family: 'Courier New', Courier, monospace;
             background-color: #000;
-            color: #0000FF;
+            color: #00FF00;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
         #chat-container {
-            width: 80%;
+            width: 90%;
             max-width: 600px;
             background: #000;
             padding: 20px;
             border: 2px solid #00FF00;
             box-shadow: 0 0 20px #00FF00;
+            animation: fadeIn 1s ease-in-out;
         }
         #messages {
             list-style-type: none;
@@ -31,10 +33,13 @@
             overflow-y: auto;
             border-bottom: 2px solid #00FF00;
             margin-bottom: 20px;
+            animation: scroll 20s linear infinite;
         }
         #messages li {
             padding: 8px;
             border-bottom: 1px solid #00FF00;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out forwards;
         }
         #chat-form {
             display: flex;
@@ -46,6 +51,7 @@
             background: #000;
             color: #00FF00;
             border-radius: 4px 0 0 4px;
+            outline: none;
         }
         #chat-form button {
             padding: 10px;
@@ -54,28 +60,19 @@
             color: #000;
             border-radius: 0 4px 4px 0;
             cursor: pointer;
+            outline: none;
         }
         #chat-form button:hover {
             background: #008000;
         }
-        <!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MümükAİ 1.0</title>
-    <style>
-        h1 {
-            text-align: center;
-            margin-top: 20px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-    </style>
-</head>
-<body>
-    <h1>MümükAİ 1.0(BETA)</h1>
-</body>
-</html>
-
+        @keyframes scroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
     </style>
 </head>
 <body>
@@ -87,8 +84,6 @@
     </div>
 
     <script>
-    
-       
         document.addEventListener('DOMContentLoaded', (event) => {
             const messages = document.getElementById('messages');
             const chatForm = document.getElementById('chat-form');
@@ -145,33 +140,15 @@
                 "internet hakkında ne düşünüyorsun": "İnternet bilgiye erişim için harika bir araçtır.",
                 "çalışıyor musun": "Ben çalışmıyorum, ama sen ne iş yapıyorsun?",
                 "okuyor musun": "Ben okumam, ama okumak faydalıdır.",
-                "seni seviyorum": "Teşekkür ederim, ben de seni seviyorum!"
-                
-            };
-
-            chatForm.onsubmit = function(e) {
-                e.preventDefault();
-                const msg = msgInput.value.trim().toLowerCase();
-                if (msg) {
-                    const userItem = document.createElement('li');
-                    userItem.textContent = "You: " + msg;
-                    messages.appendChild(userItem);
-
-                    const botResponse = responses[msg] || "Bu soruya yanıt veremiyorum.";
-                    const botItem = document.createElement('li');
-                    botItem.textContent = "MumukAi: " + botResponse;
-                    messages.appendChild(botItem);
-
-                    msgInput.value = '';
-                    messages.scrollTop = messages.scrollHeight;  // Auto scroll to the bottom
-
-
-
-
-
-                }
-            };
-        });
-    </script>
-</body>
-</html>
+                "seni seviyorum": "Teşekkür ederim, ben de seni seviyorum!",
+                "favori yiyecek": "Benim favori yiyeceğim yok, senin favorin nedir?",
+                "uyuyorsun mu": "Hayır, ben uyumam. Ama senin uyku düzenin nasıl?",
+                "favori içecek": "Benim favori içeceğim yok, senin favorin nedir?",
+                "evli misin": "Hayır, ben sanal bir varlığım.",
+                "kaç dil biliyorsun": "Ben birçok dili anlıyorum, ama sen kaç dil biliyorsun?",
+                "bana bir şaka yap": "Neden bilgisayar korsanı denizde yüzmeyi sevmez? Çünkü çok fazla phishing vardır!",
+                "en sevdiğin renk": "Benim favori rengim yeşil, seninki ne?",
+                "en sevdiğin spor": "Ben spor yapmam, ama sen hangi sporu seversin?",
+                "okula gidiyor musun": "Hayır, ben okula gitmem. Ama sen okula gidiyor musun?",
+                "en sevdiğin ders": "Benim favori dersim yok, senin favorin nedir?",
+                "gelecek hakkında ne düşünüyorsun": "Gelecek her
